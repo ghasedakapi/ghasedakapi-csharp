@@ -4,3 +4,4 @@ C:\Users\Saeid\Documents\Visual Studio 2017\Projects\GhasedakApi\GhasedakApi\bin
 C:\Users\Saeid\Documents\Visual Studio 2017\Projects\GhasedakApi\GhasedakApi\bin\GhasedakApi.pdb
 C:\Users\Saeid\Documents\Visual Studio 2017\Projects\GhasedakApi\GhasedakApi\obj\Debug\GhasedakApi.dll
 C:\Users\Saeid\Documents\Visual Studio 2017\Projects\GhasedakApi\GhasedakApi\obj\Debug\GhasedakApi.pdb
+C:\Users\Saeid\Documents\Visual Studio 2017\Projects\GhasedakApi\GhasedakApi\obj\Debug\GhasedakApi.csprojResolveAssemblyReference.cache
