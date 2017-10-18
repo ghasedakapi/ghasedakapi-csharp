@@ -8,5 +8,10 @@ namespace GhasedakApi
 {
     public class SMS
     {
+        private readonly string _apikey;
+        public SMS(string apikey)
+        {
+            _apikey = apikey;
+        }
     }
 }
