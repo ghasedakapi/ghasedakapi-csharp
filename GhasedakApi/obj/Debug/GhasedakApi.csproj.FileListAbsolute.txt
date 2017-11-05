@@ -5,3 +5,10 @@ C:\Users\Saeid\Documents\Visual Studio 2017\Projects\GhasedakApi\GhasedakApi\bin
 C:\Users\Saeid\Documents\Visual Studio 2017\Projects\GhasedakApi\GhasedakApi\obj\Debug\GhasedakApi.dll
 C:\Users\Saeid\Documents\Visual Studio 2017\Projects\GhasedakApi\GhasedakApi\obj\Debug\GhasedakApi.pdb
 C:\Users\Saeid\Documents\Visual Studio 2017\Projects\GhasedakApi\GhasedakApi\obj\Debug\GhasedakApi.csprojResolveAssemblyReference.cache
+C:\Users\Saeid\Desktop\sms\ghasedakapi-csharp\GhasedakApi\bin\GhasedakApi.dll.config
+C:\Users\Saeid\Desktop\sms\ghasedakapi-csharp\GhasedakApi\bin\GhasedakApi.dll
+C:\Users\Saeid\Desktop\sms\ghasedakapi-csharp\GhasedakApi\bin\GhasedakApi.pdb
+C:\Users\Saeid\Desktop\sms\ghasedakapi-csharp\GhasedakApi\obj\Debug\GhasedakApi.csprojResolveAssemblyReference.cache
+C:\Users\Saeid\Desktop\sms\ghasedakapi-csharp\GhasedakApi\obj\Debug\GhasedakApi.csproj.CoreCompileInputs.cache
+C:\Users\Saeid\Desktop\sms\ghasedakapi-csharp\GhasedakApi\obj\Debug\GhasedakApi.dll
+C:\Users\Saeid\Desktop\sms\ghasedakapi-csharp\GhasedakApi\obj\Debug\GhasedakApi.pdb
