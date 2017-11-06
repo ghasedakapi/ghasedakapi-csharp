@@ -13,10 +13,11 @@ namespace GhasedakApi.Client
 {
     public static class ApiClient
     {
+        private readonly static string _baseUrl = "http://ghasedakapi.com/";
         private static readonly JavaScriptSerializer _JavaScriptSerializer = new JavaScriptSerializer();
-        public static string Execute(string url, Dictionary<string, string> parameters, string method = "POST", string contentType = "application/x-www-form-urlencoded")
+        public static string Execute(string url, Dictionary<string, object> parameters, string method = "POST", string contentType = "application/x-www-form-urlencoded")
         {
-            var request = (HttpWebRequest)WebRequest.Create(url);
+            var request = (HttpWebRequest)WebRequest.Create(string.Format("{0}{1}",_baseUrl,url));
             request.Method = method;
             request.ContentType = contentType;
             byte[] data = new byte[0];
