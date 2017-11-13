@@ -8,16 +8,14 @@ namespace GhasedakApi.Interfaces
 {
     public interface ISMSService
     {
-        ApiResult Send(string message, string linenumber, string receptor);
-        ApiResult Send(string message, string linenumber, string receptor, DateTime senddate);
-
-        ApiResult Send(string message, string linenumber, string[] receptor);
-        ApiResult Send(string message, string linenumber, string[] receptor, DateTime senddate);
-
-        ApiResult Send(string[] message, string[] linenumber, string[] receptor);
-        ApiResult Send(string[] message, string[] linenumber, string[] receptor, DateTime[] senddate);
-        ApiResult Verify(int type, string template, string[] receptor, string param1, string param2, string param3);
-        ApiResult GetStatus(string messageId);
+        SendResult SendSMS(string message, string linenumber, string receptor);
+        SendResult SendSMS(string message, string linenumber, string receptor, DateTime senddate);
+        SendResult SendSMS(string message, string linenumber, string[] receptor);
+        SendResult SendSMS(string message, string linenumber, string[] receptor, DateTime senddate);
+        SendResult SendSMS(string[] message, string[] linenumber, string[] receptor);
+        SendResult SendSMS(string[] message, string[] linenumber, string[] receptor, DateTime[] senddate);
+        SendResult Verify(int type, string template, string[] receptor, string param1, string param2, string param3);
+        StatusResult GetStatus(string[] messageId);
 
     }
 }

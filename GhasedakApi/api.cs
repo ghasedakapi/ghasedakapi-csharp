@@ -10,7 +10,7 @@ using GhasedakApi.Models;
 
 namespace GhasedakApi
 {
-    public class Api : ISMSService, IAccountService, IVoiceService
+    public class Api : ISMSService, IAccountService, IVoiceService, IReceiveService
     {
         private readonly string _apikey;
         private static readonly JavaScriptSerializer _JavaScriptSerializer = new JavaScriptSerializer();
@@ -20,7 +20,7 @@ namespace GhasedakApi
         }
 
         #region sms
-        public ApiResult SendSMS(string message, string linenumber, string receptor)
+        public SendResult SendSMS(string message, string linenumber, string receptor)
         {
             var url = "api/v1/sms/send/simple";
             var param = new Dictionary<string, object>
@@ -31,9 +31,9 @@ namespace GhasedakApi
                 {"message", System.Web.HttpUtility.UrlEncodeUnicode(message)
             }
         };
-            return MakeRequest(url, param);
+            return MakeSendRequest(url, param);
         }
-        public ApiResult SendSMS(string message, string linenumber, string[] receptor)
+        public SendResult SendSMS(string message, string linenumber, string[] receptor)
         {
             var url = "api/v1/sms/send/bulk2";
             var param = new Dictionary<string, object>
@@ -43,9 +43,9 @@ namespace GhasedakApi
                {"receptor",string.Join(",",receptor) },
                {"message", System.Web.HttpUtility.UrlEncodeUnicode(message)},
         };
-            return MakeRequest(url, param);
+            return MakeSendRequest(url, param);
         }
-        public ApiResult SendSMS(string[] message, string[] linenumber, string[] receptor)
+        public SendResult SendSMS(string[] message, string[] linenumber, string[] receptor)
         {
             var url = "api/v1/sms/send/bulk";
             var msg = new System.Text.StringBuilder();
@@ -60,9 +60,9 @@ namespace GhasedakApi
                   {"receptor",string.Join(",",receptor) },
                   {"message", msg},
                 };
-            return MakeRequest(url, param);
+            return MakeSendRequest(url, param);
         }
-        public ApiResult SendSMS(string message, string linenumber, string receptor, DateTime senddate)
+        public SendResult SendSMS(string message, string linenumber, string receptor, DateTime senddate)
         {
             var url = "api/v1/sms/send/simple";
             var param = new Dictionary<string, object>
@@ -73,9 +73,9 @@ namespace GhasedakApi
                 {"message", System.Web.HttpUtility.UrlEncodeUnicode(message) },
                 {"senddate",Utilities.Date_Time.DatetimeToUnixTimeStamp(senddate) }
         };
-            return MakeRequest(url, param);
+            return MakeSendRequest(url, param);
         }
-        public ApiResult SendSMS(string message, string linenumber, string[] receptor, DateTime senddate)
+        public SendResult SendSMS(string message, string linenumber, string[] receptor, DateTime senddate)
         {
             var url = "api/v1/sms/send/bulk2";
             var param = new Dictionary<string, object>
@@ -87,9 +87,9 @@ namespace GhasedakApi
                {"senddate",Utilities.Date_Time.DatetimeToUnixTimeStamp(senddate)
              }
         };
-            return MakeRequest(url, param);
+            return MakeSendRequest(url, param);
         }
-        public ApiResult SendSMS(string[] message, string[] linenumber, string[] receptor, DateTime[] senddate)
+        public SendResult SendSMS(string[] message, string[] linenumber, string[] receptor, DateTime[] senddate)
         {
             var url = "api/v1/sms/send/bulk";
             var msg = new System.Text.StringBuilder();
@@ -107,9 +107,9 @@ namespace GhasedakApi
                   {"message", msg},
                   {"senddate", date}
                 };
-            return MakeRequest(url, param);
+            return MakeSendRequest(url, param);
         }
-        public ApiResult Verify(int type, string template, string[] receptor, string param1, string param2, string param3)
+        public SendResult Verify(int type, string template, string[] receptor, string param1, string param2, string param3)
         {
             var url = "api/v1/sms/send/verify";
             var param = new Dictionary<string, object>
@@ -122,24 +122,23 @@ namespace GhasedakApi
             {"param3", param3},
             {"template", template}
         };
-            var response = Client.ApiClient.Execute(url, param);
-            return _JavaScriptSerializer.Deserialize<ApiResult>(response);
+            return MakeSendRequest(url, param);
         }
-        public ApiResult GetStatus(string messageId)
+        public StatusResult GetStatus(string[] messageId)
         {
             var url = "api/v1/sms/status";
             var param = new Dictionary<string, object>
         {
             {"apikey", _apikey},
-            {"messageid", messageId},
+            {"messageid", string.Join(",",messageId)},
         };
             var response = Client.ApiClient.Execute(url, param);
-            return _JavaScriptSerializer.Deserialize<ApiResult>(response);
+            return _JavaScriptSerializer.Deserialize<StatusResult>(response);
         }
         #endregion
         public ApiResult AccountInfo()
         {
-            var url = "api/v1/account/status";
+            var url = "api/v1/account/info";
             var param = new Dictionary<string, object>
         {
             {"apikey", _apikey}
@@ -164,6 +163,22 @@ namespace GhasedakApi
         private ApiResult MakeRequest(string url, Dictionary<string, object> param)
         {
             return _JavaScriptSerializer.Deserialize<ApiResult>(Client.ApiClient.Execute(url, param));
+        }
+        private SendResult MakeSendRequest(string url, Dictionary<string, object> param)
+        {
+            return _JavaScriptSerializer.Deserialize<SendResult>(Client.ApiClient.Execute(url, param));
+        }
+        public ReceiveMessageResult ReceiveList(string linenumber, int isRead)
+        {
+            var url = "api/v1/sms/receive";
+            var param = new Dictionary<string, object>
+                {
+                 {"apikey", _apikey},
+                 {"linenumber", linenumber},
+                 {"isRead", isRead},
+                };
+            var response = Client.ApiClient.Execute(url, param);
+            return _JavaScriptSerializer.Deserialize<ReceiveMessageResult>(response);
         }
     }
 }

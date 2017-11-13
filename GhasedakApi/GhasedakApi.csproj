@@ -67,6 +67,8 @@
     <Compile Include="Exceptions\ConnectionException.cs" />
     <Compile Include="Exceptions\GhasedakApiException.cs" />
     <Compile Include="Interfaces\IAccountService.cs" />
+    <Compile Include="Interfaces\IContactService.cs" />
+    <Compile Include="Interfaces\IReceiveService.cs" />
     <Compile Include="Interfaces\ISMSService.cs" />
     <Compile Include="Interfaces\IVoiceService.cs" />
     <Compile Include="Models\Results.cs" />
