@@ -21,7 +21,7 @@ namespace GhasedakApi.Models
         public class ReceiveMessageResult
         {
             public ResultItems Result { get; set; }
-            public  IList<ReceiveMessageItems> Items { get; set; }
+            public IList<ReceiveMessageItems> Items { get; set; }
         }
 
         public class ReceiveMessageItems
@@ -45,6 +45,41 @@ namespace GhasedakApi.Models
         {
             public long messageId { get; set; }
             public int status { get; set; }
+        }
+        public class GroupResult
+        {
+            public ResultItems Result { get; set; }
+            public AddGroupItem Items { get; set; }
+
+        }
+        public class AddGroupItem
+        {
+            public int GroupId { get; set; }
+        }
+
+        public class GroupNumbersResult
+        {
+            public ResultItems Result { get; set; }
+
+        }
+        public class GroupNumbersItem
+        {
+            public string firstName { get; set; }
+            public string lastName { get; set; }
+            public string number { get; set; }
+            public string email { get; set; }
+        }
+        public class GroupListResult
+        {
+            public ResultItems Result { get; set; }
+
+        }
+
+        public class GroupListItem
+        {
+            public int Id { get; set; }
+            public string Name { get; set; }
+            public int Parent { get; set; }
         }
     }
 }

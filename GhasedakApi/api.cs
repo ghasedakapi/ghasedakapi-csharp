@@ -10,7 +10,7 @@ using GhasedakApi.Models;
 
 namespace GhasedakApi
 {
-    public class Api : ISMSService, IAccountService, IVoiceService, IReceiveService
+    public class Api : ISMSService, IAccountService, IVoiceService, IReceiveService, IContactService
     {
         private readonly string _apikey;
         private static readonly JavaScriptSerializer _JavaScriptSerializer = new JavaScriptSerializer();
@@ -136,6 +136,83 @@ namespace GhasedakApi
             return _JavaScriptSerializer.Deserialize<StatusResult>(response);
         }
         #endregion
+        #region Contact
+
+        public GroupResult AddGroup(string name, int parent)
+        {
+            var url = "api/v1/contact/group/add";
+            var param = new Dictionary<string, object>
+             {
+                {"apikey", _apikey},
+                {"name", name},
+                {"parent", parent},
+             };
+            return _JavaScriptSerializer.Deserialize<GroupResult>(Client.ApiClient.Execute(url,param));
+        }
+
+        public ApiResult RemoveGroup(int groupid)
+        {
+            var url = "api/v1/contact/group/remove";
+            var param = new Dictionary<string, object>
+             {
+                {"apikey", _apikey},
+                {"groupid", groupid},
+             };
+            return MakeRequest(url, param);
+        }
+
+        public ApiResult EditGroup(int groupid, string name)
+        {
+            var url = "api/v1/contact/group/edit";
+            var param = new Dictionary<string, object>
+             {
+                {"apikey", _apikey},
+                {"groupid", groupid},
+                {"name", name},
+             };
+            return MakeRequest(url, param);
+        }
+
+        public ApiResult AddNumberToGroup(int groupid, string[] number, string[] firstname, string[] lastname, string[] email)
+        {
+            var url = "api/v1/contact/group/number/add";
+            var param = new Dictionary<string, object>
+             {
+                {"apikey", _apikey},
+                {"groupid", groupid},
+                {"number", string.Join(",",number)},
+                {"firstname", string.Join(",",firstname)},
+                {"lastname", string.Join(",",lastname)},
+                {"email", string.Join(",",email)},
+             };
+            return MakeRequest(url, param);
+        }
+
+        public GroupListResult GroupList(int parent)
+        {
+            var url = "api/v1/contact/group/list";
+            var param = new Dictionary<string, object>
+             {
+                {"apikey", _apikey},
+                {"parent", parent},
+             };
+            return _JavaScriptSerializer.Deserialize<GroupListResult>(Client.ApiClient.Execute(url, param));
+        }
+
+        public GroupNumbersResult GroupNumbersList(int groupid, int page, int offset)
+        {
+            var url = "api/v1/contact/group/list";
+            var param = new Dictionary<string, object>
+             {
+                {"apikey", _apikey},
+                {"groupid", groupid},
+                {"page", page},
+                {"offset", offset},
+             };
+            return _JavaScriptSerializer.Deserialize<GroupNumbersResult>(Client.ApiClient.Execute(url, param));
+        }
+
+        #endregion
         public ApiResult AccountInfo()
         {
             var url = "api/v1/account/info";
@@ -159,15 +236,6 @@ namespace GhasedakApi
             var response = Client.ApiClient.Execute(url, param);
             return _JavaScriptSerializer.Deserialize<ApiResult>(response);
         }
-
-        private ApiResult MakeRequest(string url, Dictionary<string, object> param)
-        {
-            return _JavaScriptSerializer.Deserialize<ApiResult>(Client.ApiClient.Execute(url, param));
-        }
-        private SendResult MakeSendRequest(string url, Dictionary<string, object> param)
-        {
-            return _JavaScriptSerializer.Deserialize<SendResult>(Client.ApiClient.Execute(url, param));
-        }
         public ReceiveMessageResult ReceiveList(string linenumber, int isRead)
         {
             var url = "api/v1/sms/receive";
@@ -179,6 +247,16 @@ namespace GhasedakApi
                 };
             var response = Client.ApiClient.Execute(url, param);
             return _JavaScriptSerializer.Deserialize<ReceiveMessageResult>(response);
+        }
+
+
+        private ApiResult MakeRequest(string url, Dictionary<string, object> param)
+        {
+            return _JavaScriptSerializer.Deserialize<ApiResult>(Client.ApiClient.Execute(url, param));
+        }
+        private SendResult MakeSendRequest(string url, Dictionary<string, object> param)
+        {
+            return _JavaScriptSerializer.Deserialize<SendResult>(Client.ApiClient.Execute(url, param));
         }
     }
 }
