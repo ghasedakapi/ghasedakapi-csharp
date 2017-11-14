@@ -60,7 +60,7 @@ namespace GhasedakApi.Models
         public class GroupNumbersResult
         {
             public ResultItems Result { get; set; }
-
+            public IList<GroupNumbersItem> Items { get; set; }
         }
         public class GroupNumbersItem
         {
@@ -72,7 +72,7 @@ namespace GhasedakApi.Models
         public class GroupListResult
         {
             public ResultItems Result { get; set; }
-
+            public IList<GroupListItem> Items { get; set; }
         }
 
         public class GroupListItem
@@ -80,6 +80,22 @@ namespace GhasedakApi.Models
             public int Id { get; set; }
             public string Name { get; set; }
             public int Parent { get; set; }
+        }
+
+        public class SelectMessageResult
+        {
+            public ResultItems Result { get; set; }
+            public IList<SelectMessageItem> Items { get; set; }
+        }
+        public class SelectMessageItem
+        {
+            public long messageid { get; set; }
+            public string message { get; set; }
+            public int status { get; set; }
+            public int price { get; set; }
+            public string sender { get; set; }
+            public string receptor { get; set; }
+            public DateTime senddate { get; set; }
         }
     }
 }

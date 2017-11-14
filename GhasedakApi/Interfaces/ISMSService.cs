@@ -15,7 +15,8 @@ namespace GhasedakApi.Interfaces
         SendResult SendSMS(string[] message, string[] linenumber, string[] receptor);
         SendResult SendSMS(string[] message, string[] linenumber, string[] receptor, DateTime[] senddate);
         SendResult Verify(int type, string template, string[] receptor, string param1, string param2, string param3);
-        StatusResult GetStatus(string[] messageId);
-
+        StatusResult GetStatus(long[] messageid);
+        SendResult CancelSMS(long[] messageid);
+        SelectMessageResult SelectSMS(long[] messageid);
     }
 }
