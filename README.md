@@ -36,6 +36,8 @@
 
 ## Bulk Send
    
+   ```c#
+   
           try
             {
                 var bulksms = new GhasedakApi.Api("apikey");
@@ -53,5 +55,8 @@
             {
                 Console.WriteLine(ex.Message);
             }
+            
+            ```
+            
 
   
