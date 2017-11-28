@@ -13,7 +13,7 @@
     dotnet add package GhasedakApi.SMSTest --version 1.0.1
 
 ## Simple Send
-
+```c#
           try 
             {
                 var sms = new GhasedakApi.Api("apikey");
@@ -31,9 +31,10 @@
             {
                 Console.WriteLine(ex.Message);
             }
-            
+ ```           
 ## Bulk Send
-          
+
+    ```c#      
           try
             {
                 var bulksms = new GhasedakApi.Api("apikey");
@@ -50,4 +51,5 @@
             catch (GhasedakApi.Exceptions.ConnectionException ex)
             {
                 Console.WriteLine(ex.Message);
-            }
+            } ```   
+  
