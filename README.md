@@ -30,11 +30,10 @@
             catch (GhasedakApi.Exceptions.ConnectionException ex)
             {
                 Console.WriteLine(ex.Message);
-            }
- ```           
+            }  
+            
 ## Bulk Send
-
-    ```c#      
+   
           try
             {
                 var bulksms = new GhasedakApi.Api("apikey");
@@ -51,5 +50,6 @@
             catch (GhasedakApi.Exceptions.ConnectionException ex)
             {
                 Console.WriteLine(ex.Message);
-            } ```   
+            }
+           ```   
   
