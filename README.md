@@ -13,6 +13,7 @@
     dotnet add package GhasedakApi.SMSTest --version 1.0.1
 
 ## Simple Send
+
 ```c#
           try 
             {
@@ -31,7 +32,8 @@
             {
                 Console.WriteLine(ex.Message);
             }  
-      ```      
+```
+
 ## Bulk Send
    
           try
