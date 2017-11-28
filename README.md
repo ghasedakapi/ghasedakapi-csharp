@@ -17,7 +17,11 @@
           try 
             {
                 var sms = new GhasedakApi.Api("apikey");
-                long messageid = sms.SendSMS("message", "lineNumber", "receptor").Items[0];
+                var result = sms.SendSMS("message", "lineNumber", "receptor");
+                foreach ( var item in result.Items)
+                 {
+                    Console.WriteLine (item);
+                 }
             }
             catch (GhasedakApi.Exceptions.ApiException ex)
             {
