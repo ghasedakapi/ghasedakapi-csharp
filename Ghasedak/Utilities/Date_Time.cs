@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace GhasedakApi.Utilities
+namespace Ghasedak.Utilities
 {
     public class Date_Time
     {

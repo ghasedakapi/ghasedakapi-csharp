@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace GhasedakApi.Exceptions
+namespace Ghasedak.Exceptions
 {
-    public class ConnectionException : GhasedakApiException
+    public class ApiException:GhasedakApiException 
     {
         /// <summary>
         /// GhasedakApi error code
@@ -17,19 +17,18 @@ namespace GhasedakApi.Exceptions
         /// </summary>
         public int Status { get; }
 
-
         /// <summary>
         /// Create a ApiException with message
         /// </summary>
         /// <param name="message">Exception message</param>
-        public ConnectionException(string message) : base(message) { }
+        public ApiException(string message) : base(message) { }
 
         /// <summary>
         /// Create an ApiException from another Exception
         /// </summary>
         /// <param name="message">Exception message</param>
         /// <param name="exception">Exception to copy detatils from</param>
-        public ConnectionException(string message, Exception exception) : base(message, exception) { }
+        public ApiException(string message, Exception exception) : base(message, exception) { }
 
         /// <summary>
         /// Create an ApiException
@@ -38,7 +37,7 @@ namespace GhasedakApi.Exceptions
         /// <param name="status">HTTP status code</param>
         /// <param name="message">Error message</param>
         /// <param name="exception">Original exception</param>
-        public ConnectionException(
+        public ApiException(
             int code,
             int status,
             string message,

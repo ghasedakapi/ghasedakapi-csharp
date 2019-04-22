@@ -1,6 +1,0 @@
-F:\Projects\DotNetCore\ghasedakapi\SDK\DotNet V4\ghasedakapi-csharp\GhasedakApi\bin\GhasedakApi.dll.config
-F:\Projects\DotNetCore\ghasedakapi\SDK\DotNet V4\ghasedakapi-csharp\GhasedakApi\bin\GhasedakApi.dll
-F:\Projects\DotNetCore\ghasedakapi\SDK\DotNet V4\ghasedakapi-csharp\GhasedakApi\bin\GhasedakApi.pdb
-F:\Projects\DotNetCore\ghasedakapi\SDK\DotNet V4\ghasedakapi-csharp\GhasedakApi\obj\Debug\GhasedakApi.csproj.CoreCompileInputs.cache
-F:\Projects\DotNetCore\ghasedakapi\SDK\DotNet V4\ghasedakapi-csharp\GhasedakApi\obj\Debug\GhasedakApi.dll
-F:\Projects\DotNetCore\ghasedakapi\SDK\DotNet V4\ghasedakapi-csharp\GhasedakApi\obj\Debug\GhasedakApi.pdb

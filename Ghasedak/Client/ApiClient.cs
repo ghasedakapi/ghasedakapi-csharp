@@ -1,4 +1,4 @@
-﻿using GhasedakApi.Exceptions;
+﻿using Ghasedak.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,13 +7,13 @@ using System.Net;
 using System.Text;
 using System.Web;
 using System.Web.Script.Serialization;
-using static GhasedakApi.Models.Results;
+using static Ghasedak.Models.Results;
 
-namespace GhasedakApi.Client
+namespace Ghasedak.Client
 {
     public static class ApiClient
     {
-        private readonly static string _baseUrl = "http://ghasedakapi.com/";
+        private readonly static string _baseUrl = "https://api.ghasedak.io/";
         private static readonly JavaScriptSerializer _JavaScriptSerializer = new JavaScriptSerializer();
         public static string Execute(string url, Dictionary<string, object> parameters, string method = "POST", string contentType = "application/x-www-form-urlencoded")
         {

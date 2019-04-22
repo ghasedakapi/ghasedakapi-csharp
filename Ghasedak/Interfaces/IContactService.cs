@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using static GhasedakApi.Models.Results;
+using static Ghasedak.Models.Results;
 
-namespace GhasedakApi.Interfaces
+namespace Ghasedak.Interfaces
 {
     public interface IContactService
     {
