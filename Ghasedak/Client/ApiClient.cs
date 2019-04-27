@@ -15,7 +15,7 @@ namespace Ghasedak.Client
     {
         private readonly static string _baseUrl = "https://api.ghasedak.io/";
         private static readonly JavaScriptSerializer _JavaScriptSerializer = new JavaScriptSerializer();
-        public static string Execute(string url, Dictionary<string, object> parameters, string method = "POST", string contentType = "application/x-www-form-urlencoded")
+        public static string Execute(string url, string apikey, Dictionary<string, object> parameters, string method = "POST", string contentType = "application/x-www-form-urlencoded")
         {
             var request = (HttpWebRequest)WebRequest.Create(string.Format("{0}{1}",_baseUrl,url));
             request.Method = method;
@@ -30,6 +30,7 @@ namespace Ghasedak.Client
                     (current, key) => current + string.Format("{0}={1}&", key, parameters[key]));
                 data = Encoding.UTF8.GetBytes(postdata);
             }
+            request.Headers.Add("apikey", apikey);
             using (Stream webpageStream = request.GetRequestStream())
             {
                 webpageStream.Write(data, 0, data.Length);
