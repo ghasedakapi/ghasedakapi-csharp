@@ -29,7 +29,7 @@ namespace Ghasedak
         {
             var url = "v2/sms/send/simple";
             var param = new Dictionary<string, object>();
-            param.Add("message", System.Web.HttpUtility.UrlEncodeUnicode(message));
+            param.Add("message", message);
             param.Add("receptor", receptor);
 
             if (!string.IsNullOrEmpty(linenumber))
@@ -51,7 +51,7 @@ namespace Ghasedak
 
             foreach (var item in message)
             {
-                msg.Append(System.Web.HttpUtility.UrlEncodeUnicode(item)).Append(",");
+                msg.Append(item).Append(",");
             }
 
             param.Add("linenumber", linenumber);
@@ -77,7 +77,7 @@ namespace Ghasedak
             var param = new Dictionary<string, object>();
 
 
-            param.Add("message", System.Web.HttpUtility.UrlEncodeUnicode(message));
+            param.Add("message", message);
             param.Add("receptor", string.Join(",", receptor));
 
             if (!string.IsNullOrEmpty(linenumber))
