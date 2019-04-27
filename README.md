@@ -1,37 +1,38 @@
-# ghasedakapi-csharp
+# Ghasedak csharp
 
-  ghasedakapi C#/.NET Helper Library 
+  ghasedak C#/.NET Helper Library 
 
 ## Adding Ghasedakapi libraries to your .NET project
 
-  The best and easiest way to add the Ghasedakapi libraries to your .NET project is to use the NuGet package manager.
+  The best and easiest way to add the Ghasedak libraries to your .NET project is to use the NuGet package manager.
 
 ## Package Manager
-     Install-Package GhasedakApi.SMSTest -Version 1.0.1
- 
+   Install-Package Ghasedak.Core -Version 1.0.1
 ## .NET CLI 
-    dotnet add package GhasedakApi.SMSTest --version 1.0.1
-
+   dotnet add package Ghasedak.Core --version 1.0.1
+   
 ## Simple Send
 
 ```c#
-          try 
+
+      try
             {
-                var sms = new GhasedakApi.Api("apikey");
-                var result = sms.SendSMS("message", "lineNumber", "receptor");
-                foreach ( var item in result.Items)
-                 {
-                    Console.WriteLine (item);
-                 }
+                var sms = new Ghasedak.Api("apikey");
+                var result = await sms.SendSMS("message", "0912xxxxxxx");
+                foreach (var item in result.Items)
+                {
+                    Console.WriteLine(item);
+                }
             }
-            catch (GhasedakApi.Exceptions.ApiException ex)
+            catch (Ghasedak.Exceptions.ApiException ex)
             {
                 Console.WriteLine(ex.Message);
             }
-            catch (GhasedakApi.Exceptions.ConnectionException ex)
+            catch (Ghasedak.Exceptions.ConnectionException ex)
             {
                 Console.WriteLine(ex.Message);
-            }  
+            }
+
 ```
 
 ## Bulk Send
@@ -40,22 +41,19 @@
    
           try
             {
-                var bulksms = new GhasedakApi.Api("apikey");
-                var res = bulksms.SendSMS("message", "linenumber", new string[] { "receptor" });
+                var bulksms = new Ghasedak.Api("apikey");
+                var res = bulksms.SendSMS("message", "linenumber", new string[] { "0912xxxxxxx","0937xxxxxxxx" });
                 foreach(var item in res.Items)
                 {
                     Console.WriteLine("messageids:" + item);
                 }
             }
-            catch (GhasedakApi.Exceptions.ApiException ex)
+            catch (Ghasedak.Exceptions.ApiException ex)
             {
                 Console.WriteLine(ex.Message);
             }
-            catch (GhasedakApi.Exceptions.ConnectionException ex)
+            catch (Ghasedak.Exceptions.ConnectionException ex)
             {
                 Console.WriteLine(ex.Message);
             }
-            
-            
 
-  
