@@ -24,6 +24,9 @@ namespace Ghasedak
         }
         #endregion
 
+
+
+
         #region sms
         public SendResult SendSMS(string message,  string receptor,string linenumber = null, DateTime? senddate=null, String checkid=null)
         {
@@ -47,17 +50,24 @@ namespace Ghasedak
             var msg = new System.Text.StringBuilder();
             var date = new System.Text.StringBuilder();
             var check = new System.Text.StringBuilder();
+            var line = new System.Text.StringBuilder();
+
             var param = new Dictionary<string, object>();
 
-            foreach (var item in message)
-            {
-                msg.Append(item).Append(",");
-            }
+            //foreach (var item in message)
+            //{
+            //    msg.Append(item).Append(",");
+            //}
 
-            param.Add("linenumber", linenumber);
-            param.Add("message", msg);
+            //foreach (var item in linenumber)
+            //{
+            //    line.Append(item).Append(",");
+            //}
+
+            param.Add("linenumber", string.Join(",", linenumber));
+            param.Add("message", string.Join(",", message));
             param.Add("receptor", string.Join(",", receptor));
-            if (senddate.Length > 0)
+            if (senddate != null && senddate.Length > 0)
             {
                 foreach (var item in senddate)
                 {
@@ -66,7 +76,7 @@ namespace Ghasedak
                 param.Add("senddate", date);
             }
 
-            if (checkid.Length > 0)
+            if (checkid != null &&  checkid.Length > 0)
                 param.Add("checkid", string.Join(",", checkid));
             
             return MakeSendRequest(url, param);
@@ -85,7 +95,7 @@ namespace Ghasedak
 
             if (senddate.HasValue)
                 param.Add("senddate", Utilities.Date_Time.DatetimeToUnixTimeStamp(Convert.ToDateTime(senddate)));
-            if (checkid.Length > 0)
+            if (checkid != null && checkid.Length > 0)
                 param.Add("checkid", string.Join(",", checkid));
           
             return MakeSendRequest(url, param);

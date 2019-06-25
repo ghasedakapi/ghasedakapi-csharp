@@ -13,7 +13,7 @@ namespace Ghasedak.Client
 {
     public static class ApiClient
     {
-        private readonly static string _baseUrl = "https://api.ghasedak.io/";
+        private readonly static string _baseUrl = "http://localhost:14523/";
         private static readonly JavaScriptSerializer _JavaScriptSerializer = new JavaScriptSerializer();
         public static string Execute(string url, string apikey, Dictionary<string, object> parameters, string method = "POST", string contentType = "application/x-www-form-urlencoded")
         {
