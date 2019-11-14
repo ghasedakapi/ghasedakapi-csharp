@@ -56,4 +56,28 @@
             {
                 Console.WriteLine(ex.Message);
             }
+```
 
+## Verify 
+
+```c#
+
+     try
+            {
+                var sms = new Ghasedak.Api("apikey");
+                var result = sms.Verify(1, "template", new string[] { "0912xxxxxxx", "0937xxxxxxxx" }, "test", "test2");
+                foreach (var item in result.Items)
+                {
+                    Console.WriteLine(item);
+                }
+            }
+            catch (Ghasedak.Exceptions.ApiException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch (Ghasedak.Exceptions.ConnectionException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+```
