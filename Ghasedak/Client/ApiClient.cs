@@ -26,6 +26,9 @@ namespace Ghasedak.Client
             string postdata = "";
             if (parameters != null)
             {
+                if(parameters.Where(x => x.Key == "receptor").Any())
+                parameters["receptor"] = string.Join(",", parameters.Where(x => x.Key == "receptor").Select(x => x.Value.ToString().Replace("+", "00")));
+
                 postdata = parameters.Keys.Aggregate(postdata,
                     (current, key) => current + string.Format("{0}={1}&", key, parameters[key]));
                 data = Encoding.UTF8.GetBytes(postdata);
