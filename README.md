@@ -7,9 +7,9 @@
   The best and easiest way to add the Ghasedak libraries to your .NET project is to use the NuGet package manager.
 
 ## Package Manager
-   Install-Package Ghasedak -Version 1.0.2
+   Install-Package Ghasedak
 ## .NET CLI 
-   dotnet add package Ghasedak --version 1.0.2
+   dotnet add package Ghasedak
    
 ## Simple Send
 
