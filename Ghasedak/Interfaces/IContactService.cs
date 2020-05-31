@@ -8,11 +8,11 @@ namespace Ghasedak.Interfaces
 {
     public interface IContactService
     {
-        GroupResult AddGroup(string name, int parent);
-        ApiResult RemoveGroup(int groupid);
-        ApiResult EditGroup(int groupid,string name);
-        ApiResult AddNumberToGroup(int groupid, string[] number,string [] firstname,string []lastname,string[] email);
-        GroupListResult GroupList(int parent);
-        GroupNumbersResult GroupNumbersList(int groupid, int page, int offset);
+        GroupResult AddGroup(string name, int parent, string dep = null);
+        ApiResult RemoveGroup(int groupid, string dep = null);
+        ApiResult EditGroup(int groupid,string name, string dep = null);
+        ApiResult AddNumberToGroup(int groupid, string[] number,string [] firstname,string []lastname,string[] email, string dep = null);
+        GroupListResult GroupList(int parent, string dep = null);
+        GroupNumbersResult GroupNumbersList(int groupid, int page, int offset, string dep = null);
     }
 }

@@ -28,7 +28,7 @@ namespace Ghasedak
 
 
         #region sms
-        public SendResult SendSMS(string message,  string receptor,string linenumber = null, DateTime? senddate=null, String checkid=null)
+        public SendResult SendSMS(string message,  string receptor,string linenumber = null, DateTime? senddate=null, String checkid=null, string dep = null)
         {
             var url = "v2/sms/send/simple";
             var param = new Dictionary<string, object>();
@@ -42,9 +42,12 @@ namespace Ghasedak
             if(!string.IsNullOrEmpty(checkid))
                 param.Add("checkid", checkid);
 
+            if (!string.IsNullOrEmpty(dep))
+                url += "?dep=" + dep.Trim();
+
             return MakeSendRequest(url, param);
         }
-        public SendResult SendSMS(string[] message, string[] linenumber, string[] receptor, DateTime[] senddate =null, string[] checkid=null)
+        public SendResult SendSMS(string[] message, string[] linenumber, string[] receptor, DateTime[] senddate =null, string[] checkid=null, string dep = null)
         {
             var url = "v2/sms/send/bulk";
             var msg = new System.Text.StringBuilder();
@@ -78,10 +81,14 @@ namespace Ghasedak
 
             if (checkid != null &&  checkid.Length > 0)
                 param.Add("checkid", string.Join(",", checkid));
-            
+
+
+            if (!string.IsNullOrEmpty(dep))
+                url += "?dep=" + dep.Trim();
+
             return MakeSendRequest(url, param);
         }
-        public SendResult SendSMS(string message, string[] receptor, string linenumber=null, DateTime? senddate=null, string[] checkid=null)
+        public SendResult SendSMS(string message, string[] receptor, string linenumber=null, DateTime? senddate=null, string[] checkid=null, string dep = null)
         {
             var url = "v2/sms/send/pair";
             var param = new Dictionary<string, object>();
@@ -97,10 +104,12 @@ namespace Ghasedak
                 param.Add("senddate", Utilities.Date_Time.DatetimeToUnixTimeStamp(Convert.ToDateTime(senddate)));
             if (checkid != null && checkid.Length > 0)
                 param.Add("checkid", string.Join(",", checkid));
-          
+
+            if (!string.IsNullOrEmpty(dep))
+                url += "?dep=" + dep.Trim();
             return MakeSendRequest(url, param);
         }
-        public SendResult Verify(int type, string template, string[] receptor, string param1, string param2=null, string param3=null, string param4=null, string param5=null, string param6=null, string param7=null, string param8=null, string param9=null, string param10=null)
+        public SendResult Verify(int type, string template, string[] receptor, string param1, string param2=null, string param3=null, string param4=null, string param5=null, string param6=null, string param7=null, string param8=null, string param9=null, string param10=null, string dep = null)
         {
             var url = "v2/verification/send/simple";
             var param = new Dictionary<string, object>
@@ -119,9 +128,11 @@ namespace Ghasedak
             {"param9", param9},
             {"param10", param10},
         };
+            if (!string.IsNullOrEmpty(dep))
+                url += "?dep=" + dep.Trim();
             return MakeSendRequest(url, param);
         }
-        public StatusResult GetStatus(int type,long[] id )
+        public StatusResult GetStatus(int type,long[] id, string dep = null)
         {
             var url = "v2/sms/status";
             var param = new Dictionary<string, object>
@@ -130,21 +141,25 @@ namespace Ghasedak
                    {"type", type},
                    {"id", string.Join(",",id)},
                };
-            return _JavaScriptSerializer.Deserialize<StatusResult>(Client.ApiClient.Execute(url, _apikey, param));
+            if (!string.IsNullOrEmpty(dep))
+                url += "?dep=" + dep.Trim();
+            return _JavaScriptSerializer.Deserialize<StatusResult>(Client.ApiClient.Execute(url, _apikey, param,"Get"));
         }
-        public SendResult CancelSMS(long[] messageid)
+        public SendResult CancelSMS(long[] messageid, string dep = null)
         {
             var url = "v2/sms/cancel";
             var param = new Dictionary<string, object>
              {
                 {"messageid", string.Join(",",messageid)},
              };
+            if (!string.IsNullOrEmpty(dep))
+                url += "?dep=" + dep.Trim();
             return MakeSendRequest(url, param);
         }
         #endregion
 
         #region Contact
-        public GroupResult AddGroup(string name, int parent)
+        public GroupResult AddGroup(string name, int parent, string dep = null)
         {
             var url = "v2/contact/group/new";
             var param = new Dictionary<string, object>
@@ -153,10 +168,12 @@ namespace Ghasedak
                 {"name", name},
                 {"parent", parent},
              };
+            if (!string.IsNullOrEmpty(dep))
+                url += "?dep=" + dep.Trim();
             return _JavaScriptSerializer.Deserialize<GroupResult>(Client.ApiClient.Execute(url, _apikey, param));
         }
 
-        public ApiResult RemoveGroup(int groupid)
+        public ApiResult RemoveGroup(int groupid, string dep = null)
         {
             var url = "v2/contact/group/remove";
             var param = new Dictionary<string, object>
@@ -164,10 +181,12 @@ namespace Ghasedak
     
                 {"groupid", groupid},
              };
+            if (!string.IsNullOrEmpty(dep))
+                url += "?dep=" + dep.Trim();
             return MakeRequest(url, param);
         }
 
-        public ApiResult EditGroup(int groupid, string name)
+        public ApiResult EditGroup(int groupid, string name, string dep = null)
         {
             var url = "v2/contact/group/edit";
             var param = new Dictionary<string, object>
@@ -176,10 +195,12 @@ namespace Ghasedak
                 {"groupid", groupid},
                 {"name", name},
              };
+            if (!string.IsNullOrEmpty(dep))
+                url += "?dep=" + dep.Trim();
             return MakeRequest(url, param);
         }
 
-        public ApiResult AddNumberToGroup(int groupid, string[] number, string[] firstname, string[] lastname, string[] email)
+        public ApiResult AddNumberToGroup(int groupid, string[] number, string[] firstname, string[] lastname, string[] email, string dep = null)
         {
             var url = "v2/contact/group/addnumber";
             var param = new Dictionary<string, object>
@@ -190,20 +211,24 @@ namespace Ghasedak
                 {"lastname", string.Join(",",lastname)},
                 {"email", string.Join(",",email)},
              };
+            if (!string.IsNullOrEmpty(dep))
+                url += "?dep=" + dep.Trim();
             return MakeRequest(url, param);
         }
 
-        public GroupListResult GroupList(int parent)
+        public GroupListResult GroupList(int parent, string dep = null)
         {
             var url = "v2/contact/group/list";
             var param = new Dictionary<string, object>
              {
                 {"parent", parent},
              };
+            if (!string.IsNullOrEmpty(dep))
+                url += "?dep=" + dep.Trim();
             return _JavaScriptSerializer.Deserialize<GroupListResult>(Client.ApiClient.Execute(url, _apikey, param));
         }
 
-        public GroupNumbersResult GroupNumbersList(int groupid, int page, int offset)
+        public GroupNumbersResult GroupNumbersList(int groupid, int page, int offset, string dep = null)
         {
             var url = "v2/contact/group/listnumber";
             var param = new Dictionary<string, object>
@@ -212,26 +237,30 @@ namespace Ghasedak
                 {"page", page},
                 {"offset", offset},
              };
+            if (!string.IsNullOrEmpty(dep))
+                url += "?dep=" + dep.Trim();
             return _JavaScriptSerializer.Deserialize<GroupNumbersResult>(Client.ApiClient.Execute(url, _apikey, param));
         }
 
         #endregion
 
         #region Account
-        public ApiResult AccountInfo()
+        public AccountResult AccountInfo( string dep = null)
         {
             var url = "v2/account/info";
             var param = new Dictionary<string, object>
         {
             {"apikey", _apikey}
         };
+            if (!string.IsNullOrEmpty(dep))
+                url += "?dep=" + dep.Trim();
             var response = Client.ApiClient.Execute(url, _apikey, param);
-            return _JavaScriptSerializer.Deserialize<ApiResult>(response);
+            return _JavaScriptSerializer.Deserialize<AccountResult>(response);
         }
         #endregion
 
         #region Voice
-        public SendResult SendVoice(string message, string[] receptor, DateTime? senddate)
+        public SendResult SendVoice(string message, string[] receptor, DateTime? senddate, string dep = null)
         {
             var url = "v2/voice/send/simple";
             var param = new Dictionary<string, object>();
@@ -239,13 +268,14 @@ namespace Ghasedak
             param.Add("message", message);
             if (senddate.HasValue)
                 param.Add("senddate", Utilities.Date_Time.DatetimeToUnixTimeStamp(Convert.ToDateTime(senddate)));
-
+            if (!string.IsNullOrEmpty(dep))
+                url += "?dep=" + dep.Trim();
             return MakeSendRequest(url, param);
         }
         #endregion
 
         #region Receive
-        public ReceiveMessageResult ReceiveList(string linenumber, int isRead)
+        public ReceiveMessageResult ReceiveList(string linenumber, int isRead, string dep = null)
         {
             var url = "v2/sms/receive/last";
             var param = new Dictionary<string, object>
@@ -253,10 +283,12 @@ namespace Ghasedak
                  {"linenumber", linenumber},
                  {"isRead", isRead},
                 };
+            if (!string.IsNullOrEmpty(dep))
+                url += "?dep=" + dep.Trim();
             var response = Client.ApiClient.Execute(url, _apikey, param);
             return _JavaScriptSerializer.Deserialize<ReceiveMessageResult>(response);
         }
-        public ReceiveMessageResult ReceiveListPaging(string linenumber, int isRead , DateTime fromdate , DateTime todate , int page=0 , int offset=200)
+        public ReceiveMessageResult ReceiveListPaging(string linenumber, int isRead , DateTime fromdate , DateTime todate , int page=0 , int offset=200, string dep = null)
         {
             var url = "v2/sms/receive/paging";
             var param = new Dictionary<string, object>
@@ -268,6 +300,8 @@ namespace Ghasedak
                  {"page", page},
                  {"offset", offset},
                 };
+            if (!string.IsNullOrEmpty(dep))
+                url += "?dep=" + dep.Trim();
             var response = Client.ApiClient.Execute(url, _apikey, param);
             return _JavaScriptSerializer.Deserialize<ReceiveMessageResult>(response);
         }
