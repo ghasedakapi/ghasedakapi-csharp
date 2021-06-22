@@ -8,6 +8,6 @@ namespace Ghasedak.Interfaces
 {
   public interface IVoiceService
     {
-        SendResult SendVoice(string message, string[] receptor, DateTime? senddate);
+        SendResult SendVoice(string message, string[] receptor, DateTime? senddate, string dep = null);
     }
 }

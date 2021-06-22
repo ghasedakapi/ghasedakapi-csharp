@@ -17,9 +17,6 @@ namespace Ghasedak.Client
         private static readonly JavaScriptSerializer _JavaScriptSerializer = new JavaScriptSerializer();
         public static string Execute(string url, string apikey, Dictionary<string, object> parameters, string method = "POST", string contentType = "application/x-www-form-urlencoded")
         {
-            var request = (HttpWebRequest)WebRequest.Create(string.Format("{0}{1}",_baseUrl,url));
-            request.Method = method;
-            request.ContentType = contentType;
             byte[] data = new byte[0];
             string responseResult = "";
             HttpWebResponse _HttpWebResponse;
@@ -33,11 +30,40 @@ namespace Ghasedak.Client
                     (current, key) => current + string.Format("{0}={1}&", key, parameters[key]));
                 data = Encoding.UTF8.GetBytes(postdata);
             }
-            request.Headers.Add("apikey", apikey);
-            using (Stream webpageStream = request.GetRequestStream())
+
+            HttpWebRequest request = null;
+
+            if (! string.IsNullOrEmpty(method) &&  method.Trim().ToLower() == "get")
             {
-                webpageStream.Write(data, 0, data.Length);
+                url += "?"+ postdata;
+                if (url.Contains("dep"))
+                    url += "agent=csharp";
+                else
+                    url += "agent=csharp";
+                request = (HttpWebRequest)WebRequest.Create(string.Format("{0}{1}", _baseUrl, url));
+                request.Method = method;
+                request.ContentType = contentType;
+                request.Headers.Add("apikey", apikey);
             }
+            else
+            {
+                if (url.Contains("dep"))
+                    url += "&agent=csharp";
+                else
+                    url += "?agent=csharp";
+
+                request = (HttpWebRequest)WebRequest.Create(string.Format("{0}{1}", _baseUrl, url));
+                request.Method = method;
+                request.ContentType = contentType;
+                request.Headers.Add("apikey", apikey);
+                using (Stream webpageStream = request.GetRequestStream())
+                {
+                    webpageStream.Write(data, 0, data.Length);
+                }
+            }
+            
+
+           
             try
             {
                 using (_HttpWebResponse = (HttpWebResponse)request.GetResponse())
@@ -66,6 +92,25 @@ namespace Ghasedak.Client
                     throw new ConnectionException(ex.Message,ex);
                 }
             }
+        }
+
+
+
+        private static String GetQueryStringData(Dictionary<string, object> parameters)
+        {
+            String queryString = String.Empty;
+            if (parameters != null && parameters.Count > 0)
+            {
+                for (int i = 0; i < parameters.Count; i++)
+                {
+                    if (i == 0)
+                        queryString += ("?" + parameters.Keys.ElementAt(i) + "=" + parameters.Values.ElementAt(i));
+                    else
+                        queryString += ("&" + parameters.Keys.ElementAt(i) + "=" + parameters.Values.ElementAt(i));
+                }
+            }
+            return queryString;
+
         }
     }
 }

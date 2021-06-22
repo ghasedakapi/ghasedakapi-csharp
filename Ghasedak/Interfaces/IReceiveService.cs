@@ -8,8 +8,8 @@ namespace Ghasedak.Interfaces
 {
    public  interface IReceiveService
     {
-        ReceiveMessageResult ReceiveList(string linenumber, int isRead);
-        ReceiveMessageResult ReceiveListPaging(string linenumber, int isRead, DateTime fromdate, DateTime todate, int page = 0, int offset = 200);
+        ReceiveMessageResult ReceiveList(string linenumber, int isRead, string dep = null);
+        ReceiveMessageResult ReceiveListPaging(string linenumber, int isRead, DateTime fromdate, DateTime todate, int page = 0, int offset = 200, string dep = null);
 
     }
 }

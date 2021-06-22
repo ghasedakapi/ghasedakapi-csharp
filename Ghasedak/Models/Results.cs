@@ -97,5 +97,17 @@ namespace Ghasedak.Models
             public string receptor { get; set; }
             public DateTime senddate { get; set; }
         }
+
+        public class AccountResult
+        {
+            public ResultItems Result { get; set; }
+            public AccountItemResult Items { get; set; }
+        }
+        public class AccountItemResult
+        {
+            public int Balance { get; set; }
+            public string Expire { get; set; }
+
+        }
     }
 }
