@@ -8,6 +8,6 @@ namespace Ghasedak.Interfaces
 {
     public interface IAccountService
     {
-        ApiResult AccountInfo();
+        AccountResult AccountInfo(string dep=null);
     }
 }
