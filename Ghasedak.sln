@@ -5,19 +5,9 @@ VisualStudioVersion = 17.5.33414.496
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ghasedak", "Ghasedak\Ghasedak.csproj", "{DD1AEB4C-19B0-4035-88E0-48BB049A8CB3}"
 EndProject
-Project("{911E67C6-3D85-4FCE-B560-20A9C3E3FF48}") = "ConsoleApp1", "ConsoleApp1\bin\Release\ConsoleApp1.exe", "{652A1BA0-45D5-47B6-BA74-74448C997409}"
-	ProjectSection(DebuggerProjectSystem) = preProject
-		PortSupplier = 00000000-0000-0000-0000-000000000000
-		Executable = C:\Users\ALiReZa\Desktop\ghasedak-csharp\ConsoleApp1\bin\Release\ConsoleApp1.exe
-		RemoteMachine = DESKTOP-7RBVQP9
-		StartingDirectory = C:\Users\ALiReZa\Desktop\ghasedak-csharp\ConsoleApp1\bin\Release
-		Environment = Default
-		LaunchingEngine = 00000000-0000-0000-0000-000000000000
-		UseLegacyDebugEngines = No
-		LaunchSQLEngine = No
-		AttachLaunchAction = No
-		IORedirection = Auto
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp3", "ConsoleApp3\ConsoleApp3.csproj", "{F41FA5E6-8354-4296-96DB-5A0F4D2A7715}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDK-Test", "SDK-Test\SDK-Test\SDK-Test.csproj", "{7763807B-4946-4E14-BF10-65A12BAB472D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +25,22 @@ Global
 		{DD1AEB4C-19B0-4035-88E0-48BB049A8CB3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DD1AEB4C-19B0-4035-88E0-48BB049A8CB3}.Release|x86.ActiveCfg = Release|Any CPU
 		{DD1AEB4C-19B0-4035-88E0-48BB049A8CB3}.Release|x86.Build.0 = Release|Any CPU
-		{652A1BA0-45D5-47B6-BA74-74448C997409}.Debug|Any CPU.ActiveCfg = Release
-		{652A1BA0-45D5-47B6-BA74-74448C997409}.Debug|x86.ActiveCfg = Release
-		{652A1BA0-45D5-47B6-BA74-74448C997409}.Release|Any CPU.ActiveCfg = Release
-		{652A1BA0-45D5-47B6-BA74-74448C997409}.Release|x86.ActiveCfg = Release
+		{F41FA5E6-8354-4296-96DB-5A0F4D2A7715}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F41FA5E6-8354-4296-96DB-5A0F4D2A7715}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F41FA5E6-8354-4296-96DB-5A0F4D2A7715}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F41FA5E6-8354-4296-96DB-5A0F4D2A7715}.Debug|x86.Build.0 = Debug|Any CPU
+		{F41FA5E6-8354-4296-96DB-5A0F4D2A7715}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F41FA5E6-8354-4296-96DB-5A0F4D2A7715}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F41FA5E6-8354-4296-96DB-5A0F4D2A7715}.Release|x86.ActiveCfg = Release|Any CPU
+		{F41FA5E6-8354-4296-96DB-5A0F4D2A7715}.Release|x86.Build.0 = Release|Any CPU
+		{7763807B-4946-4E14-BF10-65A12BAB472D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7763807B-4946-4E14-BF10-65A12BAB472D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7763807B-4946-4E14-BF10-65A12BAB472D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7763807B-4946-4E14-BF10-65A12BAB472D}.Debug|x86.Build.0 = Debug|Any CPU
+		{7763807B-4946-4E14-BF10-65A12BAB472D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7763807B-4946-4E14-BF10-65A12BAB472D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7763807B-4946-4E14-BF10-65A12BAB472D}.Release|x86.ActiveCfg = Release|Any CPU
+		{7763807B-4946-4E14-BF10-65A12BAB472D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
